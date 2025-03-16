@@ -81,14 +81,40 @@
         }
         .social-links {
             margin-top: 0.5rem;
+            display: flex;
+            align-items: center;
         }
         .social-links a {
             margin-right: 1rem;
             color: #0366d6;
             text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
         }
         .social-links a:hover {
             text-decoration: underline;
+        }
+        .social-links svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+        .profile-image {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #0366d6;
+            margin-left: 1.5rem;
+        }
+        #intro {
+            display: flex;
+            align-items: flex-start;
+            flex-direction: row-reverse;
+        }
+        #intro-text {
+            flex: 1;
         }
     </style>
 </head>
@@ -104,27 +130,47 @@
 
     <main>
         <section id="intro">
-            <p>Hey there! I'm Kyle, a Principal Applied Science Lead focused on AI safety and LLM evaluation systems. I'm currently leading efforts at Microsoft to develop sophisticated LLM-based safety evaluations and automated red-teaming solutions.</p>
-            
-            <p>I've spent the last few years deep in the world of responsible AI, building systems that help detect and prevent harmful content generation while pushing the boundaries of what's possible with language models.</p>
+            <img src="me.jpeg" alt="Kyle Jackson" class="profile-image">
+            <div id="intro-text">
+                <p>Hey there! I'm Kyle, a Principal Applied Science Lead focused on AI safety and LLM evaluation systems. I'm currently leading efforts at Microsoft to develop sophisticated LLM-based safety evaluations and automated red-teaming solutions.</p>
+                
+                <p>I've spent the last few years deep in the world of responsible AI, building systems that help detect and prevent harmful content generation while pushing the boundaries of what's possible with language models.</p>
+            </div>
         </section>
 
         <section id="what-i-do">
             <h2>What I'm Working On</h2>
             <p>At Microsoft, I lead a team of brilliant research scientists where we're tackling some fascinating challenges:</p>
             
-            <p>I've been heavily involved in developing "LLM-Judges" that can automatically evaluate potentially harmful content across Microsoft's AI products. Our work on this was published in <span class="highlight">A Framework for Automated Measurement of Responsible AI Harms in Generative AI Applications</span>.</p>
-            
-            <p>Recently, I supervised research on prompt injection mitigations, which will be appearing in NAACL 2025 as <span class="highlight">Defense against Prompt Injection Attacks via Mixture of Encodings</span>.</p>
+            <p>I've been heavily involved in developing "LLM-Judges" that can automatically evaluate potentially harmful content across Microsoft's AI products. Our work on this was published in <a href="https://arxiv.org/abs/2310.17750" class="highlight">A Framework for Automated Measurement of Responsible AI Harms in Generative AI Applications</a>.</p>
             
             <p>I'm particularly proud of our work on automated red-teaming and synthetic data generation platforms that help us proactively identify risks in generative models before they become problems.</p>
+        </section>
+
+        <section id="team-publications">
+            <h2>Team Publications</h2>
+            <p>I'm fortunate to work with talented researchers who lead groundbreaking work in AI safety. Here are publications where I contributed in an advisory capacity:</p>
+            
+            <ul>
+                <li><span class="highlight">Defense against Prompt Injection Attacks via Mixture of Encodings</span> (NAACL 2025) - Supervised research on prompt injection mitigations led by my team.</li>
+            </ul>
         </section>
 
         <footer>
         <p>&copy; 2025 Kyle Jackson. All rights reserved.</p>
         <div class="social-links">
-            <a href="https://linkedin.com/in/kjackson87">LinkedIn</a>
-            <a href="https://github.com/kjackson87">GitHub</a>
+            <a href="https://linkedin.com/in/kjackson87">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                    <path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/>
+                </svg>
+                LinkedIn
+            </a>
+            <a href="https://github.com/kjackson87">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512">
+                    <path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/>
+                </svg>
+                GitHub
+            </a>
         </div>
     </footer>
 </body>
