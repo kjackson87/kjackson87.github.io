@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Me | Your Name</title>
+    <title>Kyle Jackson | AI & ML Specialist</title>
     <style>
         * {
             margin: 0;
@@ -16,12 +16,11 @@
             color: #333;
             max-width: 800px;
             margin: 0 auto;
-            padding: 1rem;
+            padding: 2rem 1rem;
+            background-color: #fafafa;
         }
         header {
             margin-bottom: 2rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid #eee;
         }
         nav {
             display: flex;
@@ -39,102 +38,94 @@
         main {
             margin-bottom: 2rem;
         }
-        h1, h2, h3 {
-            margin-bottom: 1rem;
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            color: #1a1a1a;
+        }
+        h2 {
+            font-size: 1.8rem;
+            margin: 1.5rem 0 1rem;
+            color: #333;
         }
         p {
             margin-bottom: 1rem;
+            font-size: 1.1rem;
         }
         section {
-            margin-bottom: 2rem;
+            margin-bottom: 2.5rem;
         }
-        h2 {
-            border-bottom: 1px solid #eee;
-            padding-bottom: 0.5rem;
+        .highlight {
+            color: #0366d6;
+            font-weight: 500;
         }
         .skills {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
+            gap: 0.6rem;
+            margin: 1rem 0;
         }
         .skill {
             background-color: #f1f8ff;
             border: 1px solid #c8e1ff;
-            border-radius: 3px;
-            padding: 0.25rem 0.5rem;
-            font-size: 0.9rem;
+            border-radius: 4px;
+            padding: 0.4rem 0.7rem;
+            font-size: 0.95rem;
         }
         footer {
-            margin-top: 2rem;
+            margin-top: 3rem;
             padding-top: 1rem;
             border-top: 1px solid #eee;
             color: #666;
             font-size: 0.9rem;
         }
+        .social-links {
+            margin-top: 0.5rem;
+        }
+        .social-links a {
+            margin-right: 1rem;
+            color: #0366d6;
+            text-decoration: none;
+        }
+        .social-links a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
     <header>
-        <h1>Your Name</h1>
-        <p>Web Developer | Designer | Writer</p>
+        <h1>Kyle Jackson</h1>
+        <p>AI Safety | LLM Evaluation | Applied Science</p>
         <nav>
-            <a href="index.html">About</a>
+            <a href="index.html">Home</a>
             <a href="blog.html">Blog</a>
         </nav>
     </header>
 
     <main>
-        <section id="about">
-            <h2>About Me</h2>
-            <p>Hello! I'm a web developer passionate about creating simple, effective websites. This is my personal space where I share my professional experience and thoughts.</p>
+        <section id="intro">
+            <p>Hey there! I'm Kyle, a Principal Applied Science Lead focused on AI safety and LLM evaluation systems. I'm currently leading efforts at Microsoft to develop sophisticated LLM-based safety evaluations and automated red-teaming solutions.</p>
+            
+            <p>I've spent the last few years deep in the world of responsible AI, building systems that help detect and prevent harmful content generation while pushing the boundaries of what's possible with language models.</p>
         </section>
 
-        <section id="current-role">
-            <h2>Current Role</h2>
-            <p>I currently work as a Senior Web Developer at Example Company, where I focus on developing and maintaining web applications and leading a team of junior developers.</p>
-            <p>My day-to-day responsibilities include:</p>
-            <ul>
-                <li>Developing and maintaining company website and web applications</li>
-                <li>Leading a team of 3 junior developers on various projects</li>
-                <li>Improving website performance through optimization techniques</li>
-            </ul>
+        <section id="what-i-do">
+            <h2>What I'm Working On</h2>
+            <p>At Microsoft, I lead a team of brilliant research scientists where we're tackling some fascinating challenges:</p>
+            
+            <p>I've been heavily involved in developing "LLM-Judges" that can automatically evaluate potentially harmful content across Microsoft's AI products. Our work on this was published in <span class="highlight">A Framework for Automated Measurement of Responsible AI Harms in Generative AI Applications</span>.</p>
+            
+            <p>Recently, I supervised research on prompt injection mitigations, which will be appearing in NAACL 2025 as <span class="highlight">Defense against Prompt Injection Attacks via Mixture of Encodings</span>.</p>
+            
+            <p>I'm particularly proud of our work on automated red-teaming and synthetic data generation platforms that help us proactively identify risks in generative models before they become problems.</p>
         </section>
 
-        <section id="interests">
-            <h2>Professional Interests</h2>
-            <p>I'm particularly interested in:</p>
-            <ul>
-                <li>Creating accessible and user-friendly web experiences</li>
-                <li>Performance optimization for web applications</li>
-                <li>Modern JavaScript frameworks and libraries</li>
-                <li>Responsive design principles</li>
-            </ul>
-        </section>
-
-        <section id="skills">
-            <h2>Skills</h2>
-            <div class="skills">
-                <span class="skill">HTML5</span>
-                <span class="skill">CSS3</span>
-                <span class="skill">JavaScript</span>
-                <span class="skill">React</span>
-                <span class="skill">Node.js</span>
-                <span class="skill">Git</span>
-                <span class="skill">Responsive Design</span>
-                <span class="skill">UI/UX</span>
-                <span class="skill">SEO</span>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <p>&copy; 2025 Your Name. All rights reserved.</p>
-        <p>
-            <a href="https://github.com/yourusername">GitHub</a> |
-            <a href="https://linkedin.com/in/yourusername">LinkedIn</a> |
-            <a href="mailto:your.email@example.com">Email</a>
-        </p>
+        <footer>
+        <p>&copy; 2025 Kyle Jackson. All rights reserved.</p>
+        <div class="social-links">
+            <a href="https://linkedin.com/in/kjackson87">LinkedIn</a>
+            <a href="https://github.com/kjackson87">GitHub</a>
+        </div>
     </footer>
 </body>
 </html>
