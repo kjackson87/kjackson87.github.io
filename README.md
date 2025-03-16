@@ -75,16 +75,63 @@ Your website will be available at `https://yourusername.github.io`
 ```
 yourusername.github.io/
 ├── index.html          # Homepage
-├── cv.html             # CV/Resume page
 ├── blog.html           # Blog listing page
-├── blog/               # Individual blog post pages
-│   ├── first-post.html
-│   └── second-post.html
+├── components/         # Reusable HTML components
+│   ├── header.html     # Shared header with navigation
+│   └── footer.html     # Shared footer with links
+├── js/                 # JavaScript files
+│   └── include.js      # Component inclusion system
 ├── posts/              # Markdown content for blog posts
 │   ├── first-post.md
 │   └── second-post.md
+├── templates/          # Templates for rendering content
+│   └── post.html       # Blog post template
+├── create_page.py      # Script to create new pages
+├── create-post.py      # Script to create new blog posts
+├── add-tags.py         # Script to add tags to blog posts
 └── README.md           # This file
 ```
+
+## Component System
+
+This site uses a simple component system to share common elements like the header and footer across pages:
+
+1. **Components**: HTML snippets stored in the `components/` directory
+2. **Include Script**: A JavaScript file (`js/include.js`) that loads components into pages
+3. **Component Inclusion**: Pages include components using `<div data-include="components/header.html"></div>`
+
+### Benefits
+
+- **Maintainability**: When you need to update the header or footer, you only need to make changes in one place
+- **Consistency**: All pages will have the exact same header and footer
+- **Easier Page Creation**: Use the `create_page.py` script to generate new pages with components already included
+
+### How It Works
+
+The `include.js` script:
+1. Finds all elements with the `data-include` attribute on the page
+2. Fetches the HTML content from the specified file
+3. Replaces the element's inner HTML with the loaded content
+
+## Adding New Pages
+
+You can add new pages to your site by:
+
+1. Using the `create_page.py` script (recommended):
+   ```bash
+   ./create_page.py about --title "About Me" --description "Learn more about my background and interests."
+   ```
+
+2. Or manually creating a new HTML file with the component includes:
+   ```html
+   <!-- Include header -->
+   <div data-include="components/header.html"></div>
+   
+   <!-- Your page content -->
+   
+   <!-- Include footer -->
+   <div data-include="components/footer.html"></div>
+   ```
 
 ## Adding New Blog Posts
 
@@ -101,3 +148,195 @@ yourusername.github.io/
 ## License
 
 This template is available for free use under the MIT License.
+
+# Markdown Blog
+
+A simple static blog that uses markdown files for content. This makes it easy to write and maintain blog posts without having to write HTML.
+
+## How It Works
+
+1. All blog posts are stored as markdown files in the `posts` directory
+2. The blog homepage (`blog.html`) automatically lists all posts from the `posts` directory
+3. Each post is rendered using the template in `templates/post.html`
+
+## Adding a New Post
+
+To add a new post, you can either:
+
+1. **Manually create a markdown file** in the `posts` directory with a `.md` extension.
+2. **Use the helper script** to create a new post with the correct frontmatter:
+
+```bash
+python create-post.py "My New Post Title"
+```
+
+This will create a new file in the `posts` directory with the correct filename and frontmatter.
+
+### Post Format
+
+Each post should start with YAML frontmatter that includes at least a title and date:
+
+```markdown
+---
+title: Your Post Title
+date: January 1, 2025
+tags: [tag1, tag2, tag3]
+---
+
+Your post content goes here...
+```
+
+You can also specify tags in a list format:
+
+```markdown
+---
+title: Your Post Title
+date: January 1, 2025
+tags:
+- tag1
+- tag2
+- tag3
+---
+
+Your post content goes here...
+```
+
+The frontmatter is enclosed by three dashes (`---`) at the beginning and end. After the frontmatter, you can write your post content in markdown format.
+
+### Markdown Features
+
+You can use all standard markdown features in your posts:
+
+- **Headers**: Use `#` for h1, `##` for h2, etc.
+- **Bold**: Use `**bold text**`
+- **Italic**: Use `*italic text*`
+- **Lists**: Use `- ` for unordered lists or `1. ` for ordered lists
+- **Links**: Use `[link text](url)`
+- **Images**: Use `![alt text](image-url)`
+- **Code blocks**: Use triple backticks (```) to create code blocks
+- **Inline code**: Use single backticks (`) for inline code
+
+### Code Syntax Highlighting
+
+For code blocks, you can specify the language for syntax highlighting:
+
+```javascript
+function hello() {
+  console.log("Hello, world!");
+}
+```
+
+## Customization
+
+### Changing the Site Title and Information
+
+Edit the following files to change the site title and information:
+
+- `index.html`: Main page
+- `blog.html`: Blog listing page
+- `templates/post.html`: Blog post template
+
+Look for "Your Name" and replace it with your own name. Also update the footer links to point to your own social media profiles.
+
+### Styling
+
+The CSS styles are embedded in each HTML file. You can modify them to change the appearance of your site.
+
+## Deployment
+
+This site is designed to work with GitHub Pages or any static site hosting service. Simply push the files to your repository and enable GitHub Pages in the repository settings.
+
+For GitHub Pages:
+
+1. Create a repository named `yourusername.github.io`
+2. Push your files to the repository
+3. Your site will be available at `https://yourusername.github.io`
+
+## Local Development
+
+To test your site locally, you can use any local server. For example, with Python:
+
+```bash
+# Python 3
+python -m http.server
+
+# Python 2
+python -m SimpleHTTPServer
+```
+
+Then open `http://localhost:8000` in your browser.
+
+## Python Scripts
+
+This site includes several Python scripts to help you manage your blog posts and site pages:
+
+### Create Page Script
+
+The `create_page.py` script helps you create new pages that automatically use the shared header and footer components:
+
+```bash
+# Basic usage
+./create_page.py projects
+
+# Advanced usage with custom title and description
+./create_page.py research --title "Research Projects" --description "Explore my current and past research projects in AI safety."
+
+# Create a page that will be in a subdirectory (adjusts component paths)
+./create_page.py profile --title "My Profile" --description "Learn more about me" --subdirectory
+```
+
+This script will:
+1. Create a new HTML file with your header and footer components included
+2. Ask if you want to add a link to your navigation menu
+3. If you say yes, it will update the `components/header.html` file automatically
+
+Script options:
+- `page_name`: Name of the HTML file to create (without extension) - required
+- `--title`: Title of the page (default: "New Page")
+- `--description`: Brief description of the page content (default: "This is a new page.")
+- `--subdirectory`: Flag indicating the page will be in a subdirectory (affects component paths)
+
+### Create Post Script
+
+The `create-post.py` script helps you create a new blog post with the correct frontmatter:
+
+```bash
+python create-post.py "My New Post Title"
+```
+
+This will create a new file in the `posts` directory with a filename derived from the title and the correct frontmatter.
+
+### Add Tags Script
+
+The `add-tags.py` script helps you add tags to an existing blog post:
+
+```bash
+python add-tags.py post-filename.md "tag1, tag2, tag3"
+```
+
+This will add the specified tags to the post, merging with any existing tags.
+
+## Limitations
+
+- This is a client-side solution, so it requires JavaScript to be enabled in the browser
+- On GitHub Pages, there's no way to automatically list all files in a directory, so the blog page uses a fallback mechanism to find posts
+- For the best experience, use a local server or a hosting service that allows directory listing
+
+### Adding and Managing Tags
+
+You can add tags to your posts in the frontmatter section using either the array format or the list format:
+
+1. **Adding tags to a new post:**
+   Simply include the tags in the frontmatter as shown above.
+
+2. **Adding tags to an existing post:**
+   You can manually edit the frontmatter, or use the provided script:
+
+   ```bash
+   python add-tags.py post-filename.md "tag1, tag2, tag3"
+   ```
+
+   This will add the specified tags to the post, merging with any existing tags.
+
+3. **Filtering by tags:**
+   The blog page includes a tag filter system that allows readers to filter posts by tag.

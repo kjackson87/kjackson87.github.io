@@ -161,16 +161,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.0.2/marked.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github.min.css">
+    <!-- Include the component loader script -->
+    <script src="../js/include.js"></script>
 </head>
 <body>
-    <header>
-        <h1>Your Name</h1>
-        <p>Web Developer | Designer | Writer</p>
-        <nav>
-            <a href="../index.html">Home</a>
-            <a href="../blog.html">Blog</a>
-        </nav>
-    </header>
+    <!-- Include the header component with adjusted path -->
+    <div data-include="../components/header.html"></div>
 
     <main>
         <article>
@@ -190,14 +186,8 @@
         </article>
     </main>
 
-    <footer>
-        <p>&copy; 2025 Your Name. All rights reserved.</p>
-        <p>
-            <a href="https://github.com/yourusername">GitHub</a> |
-            <a href="https://linkedin.com/in/yourusername">LinkedIn</a> |
-            <a href="mailto:your.email@example.com">Email</a>
-        </p>
-    </footer>
+    <!-- Include the footer component with adjusted path -->
+    <div data-include="../components/footer.html"></div>
     
     <script>
         // Configure marked with highlight.js for code syntax highlighting
