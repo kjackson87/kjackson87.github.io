@@ -1,0 +1,149 @@
+%=========================
+% resume.tex
+%=========================
+\documentclass[11pt,a4paper,sans]{moderncv}
+
+% ModernCV themes
+\moderncvstyle{classic}  % style options: 'casual', 'classic', 'oldstyle', 'banking'
+\moderncvcolor{blue}     % color options: 'blue', 'orange', 'green', 'red', 'purple', 'grey', 'black'
+
+% Character encoding
+\usepackage[utf8]{inputenc}   % if you need to handle special characters
+\usepackage[T1]{fontenc}      % better handling of hyphenation
+
+% Adjust the font used by your name and title
+\renewcommand*{\namefont}{\fontsize{20}{22}\bfseries}
+\renewcommand*{\titlefont}{\fontsize{10}{12}\mdseries}
+
+% Adjust page margins
+% \usepackage[scale=0.85]{geometry}
+\usepackage[scale=0.9, top=1in, bottom=1in]{geometry}
+
+% Personal info
+\name{Kyle}{Jackson}
+% \title{Resume} % optional
+\address{556 Cultivate}{Irvine, CA 92618} % optional
+\phone[mobile]{(608) 334-4154} % optional
+\email{kyle@jacksonk.com}  % optional
+\homepage{kylejackson.org} % optional
+\social[linkedin]{kjackson87}
+
+\begin{document}
+
+%=========================
+% CONTACT HEADER
+%=========================
+\makecvtitle
+\vspace{-1em}  % negative space to pull content up
+
+%-----------------------------------
+% STEP 2.1: ADD A SUMMARY SECTION
+%-----------------------------------
+\section{Summary}
+\cvitem{}{
+  Principal Applied Science Lead specializing in AI safety, LLM evaluation systems, and automated red-teaming solutions.
+  Leading Microsoft's efforts in developing sophisticated LLM-based safety evaluations and harm detection systems.
+  Proven track record of architecting large-scale AI solutions that combine cutting-edge research with practical
+  implementation, including synthetic data generation, automated content evaluation, and IP protection services.
+  Experienced in building and leading technical teams to deliver robust AI systems with a focus on responsible
+  deployment and risk mitigation.
+}
+
+%=========================
+% EMPLOYMENT
+%=========================
+\section{Employment}
+
+\cventry{Mar 2022 -- Current}
+        {Principal Applied Science Lead}
+        {Microsoft}
+        {}
+        {}
+        {
+          \begin{itemize}
+            \item Lead a team of 5 research scientists focused on developing and implementing LLM-based safety evaluations and automated red-teaming solutions.
+            \item Unified LLM-Judges with conversation simulation to automate harmful content evaluation across Microsoft AI products, reducing the manual review burden.
+              \begin{itemize}
+                \item Published: \textit{A Framework for Automated Measurement of Responsible AI Harms in Generative AI Applications} (Magooda, Helyar, Jackson, et al., 2023)
+              \end{itemize}
+            \item Supervised research internship on prompt injection mitigations.
+              \begin{itemize}
+                \item Published: \textit{Defense against Prompt Injection Attacks via Mixture of Encodings} (Zhang, Sullivan, Jackson, et al., To appear in NAACL 2025)
+              \end{itemize}
+            \item Tuned and deployed an automated red-teaming "Red" language model, improving detection of potential policy violations in generative outputs.
+            \item Optimized and evaluated an LLM-Judge model, refining its ability to accurately assess harmful or disallowed content.
+            \item Created a synthetic "seed" dataset for automated red-teaming, providing a transferrable process for discovering harms in generative models.
+            \item Engineered a synthetic data generation platform to elicit harmful content from Bing Copilot, proactively identifying potential risks.
+            \item Pioneered a system for evaluating harm detection in Bing Copilot by leveraging "LLM-as-a-Judge" and converting Responsible AI (RAI) policies into actionable guidelines.
+            \item Architected and deployed an IP protection service utilizing large-scale text analysis to detect potential intellectual property violations in AI-generated content.
+            \item Developed a unified metrics data pipeline that ingests plugin, service, and model telemetry for GitHub Copilot, streamlining analytics and accelerating model improvements.
+            \item Designed and delivered a BERT-based malware detection model for GitHub Copilot, enhancing real-time threat identification in code suggestions.
+          \end{itemize}
+        }
+
+\cventry{Oct 2018 -- Mar 2022}
+        {Sr Software Engineer}
+        {Microsoft}
+        {}
+        {}
+        {
+          \begin{itemize}
+            \item Enhanced existing services to allow for seamless new cloud rollout in secure and standard clouds.
+            \item Enhanced telemetry of compromised Microsoft accounts to evaluate compromise detection sources.
+            \item Built a service to protect 500 million LinkedIn accounts from online compromise.
+          \end{itemize}
+        }
+
+\cventry{May 2016 -- Sept 2018}
+        {Sr Software Engineer}
+        {Digital Innovation at Providence}
+        {}
+        {}
+        {
+          \begin{itemize}
+            \item Built a software delivery platform and Kubernetes infrastructure stack, accelerating new project launches and streamlining deployments.
+            \item Led an Operational Excellence initiative to reduce on-call pages and MTTR, cultivating a culture of proactive issue resolution.
+            \item Spearheaded the development of a Telehealth web app (TypeScript, WebRTC, React, Java microservices) and introduced a code generator to enhance productivity.
+          \end{itemize}
+        }
+
+\cventry{June 2010 -- May 2016}
+        {Principal Software Engineer}
+        {Liberty Mutual}
+        {}
+        {}
+        {
+          \begin{itemize}
+            \item Led the development of a data-driven Smart Home platform to enhance insurance offerings.
+            \item Created a centralized logging framework that improved service reliability and integrated legacy mainframe data into modern systems.
+          \end{itemize}
+        }
+
+\cventry{Sep 2008 -- May 2010}
+        {Research Assistant}
+        {Marquette University CS Dept}
+        {}
+        {}
+        {
+          \begin{itemize}
+            \item Worked on a research team to build the XINU operating system for Linksys routers.
+          \end{itemize}
+        }
+
+%=========================
+% SKILLS
+%=========================
+\section{Skills}
+\cvitem{AI/ML}{LLMs, BERT, PyTorch, TensorFlow, Hugging Face, Responsible AI, Red-teaming}
+\cvitem{Cloud \& Infrastructure}{Azure, AWS, Docker, Kubernetes, Microservices}
+\cvitem{Programming}{Python, C\#, TypeScript, Java, JavaScript, SQL}
+\cvitem{Tools \& Frameworks}{Jupyter, Git, CI/CD, REST APIs, Node.js}
+
+%=========================
+% EDUCATION
+%=========================
+\section{Education}
+\cventry{Atlanta, GA}{Georgia Institute of Technology}{Master of Science in Computer Science}{}{}{Focus on Machine Learning}
+\cventry{Milwaukee, WI}{Marquette University}{Bachelor of Science in Computer Sciences}{}{}{}
+
+\end{document}
