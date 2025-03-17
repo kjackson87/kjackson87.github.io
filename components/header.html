@@ -3,7 +3,21 @@
     <h1>Kyle Jackson</h1>
     <p>Responsible AI | LLM Evaluation | Applied Science</p>
     <nav>
-        <a href="index.html">Home</a>
-        <a href="blog.html">Blog</a>
+        <a href="/index.html">Home</a>
+        <a href="/blog.html">Blog</a>
     </nav>
-</header> 
+</header>
+
+<script>
+    // Fix navigation links based on current path
+    document.addEventListener('DOMContentLoaded', function() {
+        // Check if we're in the root directory or in a subdirectory
+        const isInSubdirectory = window.location.pathname.includes('/templates/');
+        
+        if (!isInSubdirectory) {
+            // We're in the root directory, so adjust the links
+            document.getElementById('home-link').href = 'index.html';
+            document.getElementById('blog-link').href = 'blog.html';
+        }
+    });
+</script> 

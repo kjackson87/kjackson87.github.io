@@ -10,11 +10,14 @@ document.addEventListener('DOMContentLoaded', function() {
     includes.forEach(function(element) {
         const file = element.getAttribute('data-include');
         
+        // If file path starts with a slash, it's an absolute path, otherwise it's relative
+        const url = file.startsWith('/') ? file : file;
+        
         // Fetch the content of the include file
-        fetch(file)
+        fetch(url)
             .then(response => {
                 if (!response.ok) {
-                    throw new Error(`Failed to load ${file}: ${response.status} ${response.statusText}`);
+                    throw new Error(`Failed to load ${url}: ${response.status} ${response.statusText}`);
                 }
                 return response.text();
             })
@@ -26,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 element.dispatchEvent(new CustomEvent('include-loaded'));
             })
             .catch(error => {
-                console.error(`Error including file ${file}:`, error);
+                console.error(`Error including file ${url}:`, error);
                 element.innerHTML = `<p style="color: red;">Error loading component: ${error.message}</p>`;
             });
     });
