@@ -288,51 +288,61 @@
                     }
                 }
                 
-                // Try to fetch a list of files (this works on a local server but not on GitHub Pages)
+                // Fetch posts from the generated post-index.json file
                 try {
-                    const response = await fetch('posts/');
-                    // If this succeeds, we're on a server that can list directories
-                    // Parse the HTML response to find markdown files
-                    const html = await response.text();
-                    const parser = new DOMParser();
-                    const doc = parser.parseFromString(html, 'text/html');
-                    const links = doc.querySelectorAll('a');
-                    
-                    const mdFiles = Array.from(links)
-                        .map(link => link.href)
-                        .filter(href => href.endsWith('.md'))
-                        .map(href => href.substring(href.lastIndexOf('/') + 1));
-                    
-                    // Process each markdown file
-                    for (const file of mdFiles) {
-                        const post = await fetchAndParsePost(file);
-                        if (post) posts.push(post);
+                    const response = await fetch('/post-index.json');
+                    if (!response.ok) {
+                        throw new Error(`Failed to fetch post index: ${response.status} ${response.statusText}`);
                     }
+                    
+                    const postData = await response.json();
+                    
+                    // Process each post from the index
+                    for (const post of postData) {
+                        // Extract the categories as tags
+                        const tags = post.categories || [];
+                        
+                        // Add each tag to the set of all tags
+                        tags.forEach(tag => allTags.add(tag));
+                        
+                        posts.push({
+                            title: post.title,
+                            date: post.date,
+                            excerpt: post.excerpt,
+                            tags: tags,
+                            filename: post.filename.replace('.md', '')
+                        });
+                    }
+                    
+                    console.log(`Loaded ${posts.length} posts from post-index.json`);
                 } catch (error) {
-                    console.log('Directory listing not supported, falling back to known files');
+                    console.error('Error loading post index:', error);
                     
-                    // Fallback: Try to fetch known markdown files
-                    // This is for GitHub Pages where directory listing isn't available
-                    const knownFiles = ['first-post.md'];
-                    
-                    for (const file of knownFiles) {
-                        const post = await fetchAndParsePost(file);
-                        if (post) posts.push(post);
-                    }
-                    
-                    // Try to fetch other potential posts by common naming patterns
-                    const potentialFiles = [];
-                    
-                    // Generate potential filenames based on common patterns
-                    for (let i = 1; i <= 10; i++) {
-                        potentialFiles.push(`post-${i}.md`);
-                        potentialFiles.push(`article-${i}.md`);
-                    }
-                    
-                    // Try each potential file
-                    for (const file of potentialFiles) {
-                        const post = await fetchAndParsePost(file);
-                        if (post) posts.push(post);
+                    // Fallback to try the directory listing method for local development
+                    try {
+                        console.log('Trying directory listing as fallback...');
+                        const response = await fetch('posts/');
+                        const html = await response.text();
+                        const parser = new DOMParser();
+                        const doc = parser.parseFromString(html, 'text/html');
+                        const links = doc.querySelectorAll('a');
+                        
+                        const mdFiles = Array.from(links)
+                            .map(link => link.href)
+                            .filter(href => href.endsWith('.md'))
+                            .map(href => href.substring(href.lastIndexOf('/') + 1));
+                        
+                        // Process each markdown file
+                        for (const file of mdFiles) {
+                            const post = await fetchAndParsePost(file);
+                            if (post) posts.push(post);
+                        }
+                        
+                        console.log(`Loaded ${posts.length} posts from directory listing`);
+                    } catch (directoryError) {
+                        console.error('Both post index and directory listing failed:', directoryError);
+                        document.getElementById('post-list').innerHTML = 
+                            '<li>Failed to load posts. Please make sure post-index.json exists at the root of your site.</li>';
                     }
                 }
                 
