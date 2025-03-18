@@ -239,7 +239,7 @@
             gfm: true
         });
 
-        // This script fetches and renders the markdown content
+        // This script fetches and renders the content
         document.addEventListener('DOMContentLoaded', async function() {
             try {
                 // Get post name from URL query parameter
@@ -249,75 +249,49 @@
                 if (!postName) {
                     throw new Error('No post specified in URL');
                 }
+
+                // First try to fetch from post-index.json to get metadata
+                const indexResponse = await fetch('../post-index.json');
                 
-                // Fetch the markdown file
-                const response = await fetch(`../posts/${postName}.md`);
-                
-                if (!response.ok) {
-                    throw new Error(`Failed to load post: ${response.status} ${response.statusText}`);
+                if (!indexResponse.ok) {
+                    throw new Error(`Failed to load post index: ${indexResponse.status} ${indexResponse.statusText}`);
                 }
                 
-                const markdown = await response.text();
+                const postIndex = await indexResponse.json();
+                const postData = postIndex.find(post => post.filename === postName);
                 
-                // Extract the title and date from frontmatter if exists
-                const frontMatterMatch = markdown.match(/^---\s+([\s\S]*?)\s+---/);
-                
-                let content = markdown;
-                let title = postName.replace(/-/g, ' ');
-                let date = 'Unknown date';
-                let tags = [];
-                
-                if (frontMatterMatch) {
-                    const frontMatter = frontMatterMatch[1];
-                    
-                    // Extract title
-                    const titleMatch = frontMatter.match(/title:\s*(.+)/);
-                    if (titleMatch) {
-                        title = titleMatch[1].trim();
-                    }
-                    
-                    // Extract date
-                    const dateMatch = frontMatter.match(/date:\s*(.+)/);
-                    if (dateMatch) {
-                        date = dateMatch[1].trim();
-                    }
-                    
-                    // Extract tags
-                    const tagsMatch = frontMatter.match(/tags:\s*\[(.*?)\]/);
-                    if (tagsMatch) {
-                        tags = tagsMatch[1].split(',').map(tag => tag.trim().replace(/["']/g, ''));
-                    } else {
-                        // Alternative format: tags on multiple lines
-                        const tagsListMatch = frontMatter.match(/tags:\s*\n([\s\S]*?)(?:\n\w|$)/);
-                        if (tagsListMatch) {
-                            tags = tagsListMatch[1].split('\n').map(line => {
-                                const match = line.match(/[-*]\s*(.*)/);
-                                return match ? match[1].trim() : null;
-                            }).filter(Boolean);
-                        }
-                    }
-                    
-                    // Remove frontmatter from content
-                    content = markdown.replace(frontMatterMatch[0], '').trim();
+                if (!postData) {
+                    throw new Error(`Post "${postName}" not found in index`);
                 }
                 
-                // Update title and date in the DOM
-                document.getElementById('post-title').textContent = title;
-                document.getElementById('post-date').textContent = date;
-                document.getElementById('page-title').textContent = `${title} | Kyle Jackson`;
+                // Update title, date, and tags from index data
+                document.getElementById('post-title').textContent = postData.title;
+                document.getElementById('post-date').textContent = postData.date;
+                document.getElementById('page-title').textContent = `${postData.title} | Kyle Jackson`;
                 
                 // Update tags
                 const tagsContainer = document.getElementById('post-tags');
+                const tags = postData.tags || [];
+                
                 if (tags.length > 0) {
                     tagsContainer.innerHTML = tags.map(tag => 
-                        `<a href="/blog.html?tag=${encodeURIComponent(tag)}" class="post-tag">${tag}</a>`
+                        `<a href="../blog.html?tag=${encodeURIComponent(tag)}" class="post-tag">${tag}</a>`
                     ).join('');
                 } else {
                     tagsContainer.style.display = 'none';
                 }
                 
-                // Render markdown to HTML
-                document.getElementById('post-content').innerHTML = marked.parse(content);
+                // Fetch the HTML content
+                const response = await fetch(`../html_posts/${postName}.html`);
+                
+                if (!response.ok) {
+                    throw new Error(`Failed to load post content: ${response.status} ${response.statusText}`);
+                }
+                
+                const html = await response.text();
+                
+                // Insert the HTML content directly
+                document.getElementById('post-content').innerHTML = html;
                 
                 // Apply syntax highlighting to code blocks
                 document.querySelectorAll('pre code').forEach((block) => {
@@ -329,7 +303,7 @@
                 document.getElementById('post-content').innerHTML = `
                     <div id="error-message">
                         <p>Error loading post: ${error.message}</p>
-                        <p>Please try again later or <a href="/blog.html">return to the blog</a>.</p>
+                        <p>Please try again later or <a href="../blog.html">return to the blog</a>.</p>
                     </div>
                 `;
             }

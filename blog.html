@@ -299,8 +299,8 @@
                     
                     // Process each post from the index
                     for (const post of postData) {
-                        // Extract the categories as tags
-                        const tags = post.categories || [];
+                        // Extract the categories as tags if no tags are available
+                        const tags = post.tags && post.tags.length > 0 ? post.tags : (post.categories || []);
                         
                         // Add each tag to the set of all tags
                         tags.forEach(tag => allTags.add(tag));

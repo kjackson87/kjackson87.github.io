@@ -329,3 +329,46 @@ You can add tags to your posts in the frontmatter section using either the array
 
 3. **Filtering by tags:**
    The blog page includes a tag filter system that allows readers to filter posts by tag.
+
+## Blog Setup
+
+This blog is designed to work with GitHub Pages. Since GitHub Pages doesn't serve raw markdown files by default, we need to pre-generate HTML files from the markdown blog posts.
+
+### Setup Process
+
+1. Install required dependencies and generate HTML files:
+
+```bash
+./setup_blog.sh
+```
+
+This script will:
+- Install required Python packages (markdown)
+- Generate the post index (post-index.json)
+- Convert markdown posts to HTML files
+
+2. After running the setup, commit and push your changes to GitHub:
+
+```bash
+git add .
+git commit -m "Generate HTML blog posts"
+git push
+```
+
+### Adding New Posts
+
+1. Add your new markdown post to the `posts/` directory
+2. Run the setup script again to regenerate the HTML files:
+
+```bash
+./setup_blog.sh
+```
+
+3. Commit and push your changes
+
+### Troubleshooting
+
+If you're experiencing 404 errors when trying to view blog posts:
+- Ensure you've run the setup script to generate HTML files
+- Check that the HTML files exist in the `html_posts/` directory
+- Verify that the paths in the templates are correct for your GitHub Pages setup
