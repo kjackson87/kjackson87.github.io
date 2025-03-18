@@ -28,28 +28,35 @@ cd yourusername.github.io
    - Education
    - Social media links
 
-### 3. Add Blog Posts
+### 3. Blog CLI Tool
 
-1. Create a `posts` folder in the root directory:
+This repository includes a command-line tool for managing blog content. The tool helps you:
+
+- Create new blog posts with proper frontmatter
+- Add tags to existing posts
+- Generate a JSON index of all posts
+- Create new pages with standardized layout
+- Convert Jupyter notebooks to blog posts
+
+#### Installation
 
 ```bash
-mkdir posts
+pip install -e .
 ```
 
-2. Add your markdown blog posts to the `posts` folder with the `.md` extension. Each post should have front matter at the top:
+#### Usage Examples
 
-```markdown
----
-title: Your Post Title
-date: YYYY-MM-DD
----
-
-Your content here...
+Create a new blog post:
+```bash
+blog-cli post create "My New Blog Post"
 ```
 
-3. For each blog post, create a corresponding HTML file in the `blog` folder using the template provided in `blog/first-post.html`. The filename should match the markdown filename (without the `.md` extension).
+Generate post index:
+```bash
+blog-cli post generate-index
+```
 
-4. Update the blog list in `blog.html` to include your new posts.
+For more details, check the [Blog CLI documentation](blog_cli/README.md).
 
 ### 4. Push to GitHub
 
@@ -86,9 +93,10 @@ yourusername.github.io/
 │   └── second-post.md
 ├── templates/          # Templates for rendering content
 │   └── post.html       # Blog post template
-├── create_page.py      # Script to create new pages
-├── create-post.py      # Script to create new blog posts
-├── add-tags.py         # Script to add tags to blog posts
+├── blog_cli/           # Blog CLI tool
+│   ├── commands/       # CLI commands
+│   ├── utils/          # Utility functions
+│   └── README.md       # CLI documentation
 └── README.md           # This file
 ```
 
@@ -104,7 +112,7 @@ This site uses a simple component system to share common elements like the heade
 
 - **Maintainability**: When you need to update the header or footer, you only need to make changes in one place
 - **Consistency**: All pages will have the exact same header and footer
-- **Easier Page Creation**: Use the `create_page.py` script to generate new pages with components already included
+- **Easier Page Creation**: Use the Blog CLI tool to generate new pages with components already included
 
 ### How It Works
 
@@ -115,29 +123,19 @@ The `include.js` script:
 
 ## Adding New Pages
 
-You can add new pages to your site by:
+You can add new pages to your site using the Blog CLI tool:
 
-1. Using the `create_page.py` script (recommended):
-   ```bash
-   ./create_page.py about --title "About Me" --description "Learn more about my background and interests."
-   ```
-
-2. Or manually creating a new HTML file with the component includes:
-   ```html
-   <!-- Include header -->
-   <div data-include="components/header.html"></div>
-   
-   <!-- Your page content -->
-   
-   <!-- Include footer -->
-   <div data-include="components/footer.html"></div>
-   ```
+```bash
+blog-cli page create about --title "About Me" --description "Learn more about my background and interests."
+```
 
 ## Adding New Blog Posts
 
-1. Create a new markdown file in the `posts` folder with front matter
-2. Copy one of the existing blog post HTML files in the `blog` folder and update the filename
-3. Update the blog listing in `blog.html` to include the new post
+Use the Blog CLI tool to create and manage blog posts:
+
+```bash
+blog-cli post create "My New Blog Post" 
+```
 
 ## Customization
 
@@ -159,18 +157,9 @@ A simple static blog that uses markdown files for content. This makes it easy to
 2. The blog homepage (`blog.html`) automatically lists all posts from the `posts` directory
 3. Each post is rendered using the template in `templates/post.html`
 
-## Adding a New Post
+## Blog Content Management
 
-To add a new post, you can either:
-
-1. **Manually create a markdown file** in the `posts` directory with a `.md` extension.
-2. **Use the helper script** to create a new post with the correct frontmatter:
-
-```bash
-python create-post.py "My New Post Title"
-```
-
-This will create a new file in the `posts` directory with the correct filename and frontmatter.
+The Blog CLI tool provides a set of commands to make managing blog content easier. See the [CLI documentation](blog_cli/README.md) for more details.
 
 ### Post Format
 
