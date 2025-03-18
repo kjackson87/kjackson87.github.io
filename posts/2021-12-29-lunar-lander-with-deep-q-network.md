@@ -9,7 +9,7 @@ image: images/lunar_lander.png
 
 # Introduction
 
-Way back in 2013, DeepMind presented the Deep Q-Network (DQN) agent applied to Atari 2600 games. This agent grabbed screenshots from Atari games as input and used Q-learning to predict and take the best action. With traditional Q-learning, the entire state space must be represented in the Q-table, the table that stores state-action pairs with their Q-values. DQN uses a neural network as a function estimator to estimate this Q-fuction, rather than storing the Q-values explicitely. {% cite mnih2013playing %}
+Way back in 2013, DeepMind presented the Deep Q-Network (DQN) agent applied to Atari 2600 games. This agent grabbed screenshots from Atari games as input and used Q-learning to predict and take the best action. With traditional Q-learning, the entire state space must be represented in the Q-table, the table that stores state-action pairs with their Q-values. DQN uses a neural network as a function estimator to estimate this Q-fuction, rather than storing the Q-values explicitely. [^1]
 
 Here, we'll implement a simplified version of the DQN agent applied to the Gym Lunar Lander environment. For this first implementation, rather than take screen grabs and use those to build our state, we'll use the state provided by Gym directly, removing that task to focus more explicitely on the algorithm itself. In a follow-up post, we'll drop the built in state and instead use game pixels to build the state.
 
@@ -76,7 +76,7 @@ class DQN(nn.Module):
 
 When iterating through environments, we receive immediate feedback from the environment in the form of rewards. In a typical Q-learning algorithm, the Q-table is updated every iteration by calculating the Bellman equation for a given state-action pair. For our DQN agent, this won't work so well. We have two problems. One, since we receive rewards and want to make an update immediately, we only have a batch of one to calculate the gradient from before making our next move, and two, sequential actions and rewards are highly correlated. Concretely, the action and received reward of state $s_t$ is directly influenced by the action and reward received at state $s_{t-1}$.
 
-To solve these two problems, we introduce a buffer to store *experience tuples*, defined as a tuple of a state, action, reward, and next state. For implementation reasons, we also store if the action resulted in a termination of the environment. The buffer of these tuples solves the batching problem for calculating gradients, but if we just take sequential experiences, we'll end up still having highly correlated samples. Instead, this is where Mnih, et al. introduced *Replay Memory*. When sampling from this buffer, we sample randomly rather than take the $n$ most recent samples. This solves our correlation issue, and keeps the buffer quite simple. {% cite mnih2013playing %}
+To solve these two problems, we introduce a buffer to store *experience tuples*, defined as a tuple of a state, action, reward, and next state. For implementation reasons, we also store if the action resulted in a termination of the environment. The buffer of these tuples solves the batching problem for calculating gradients, but if we just take sequential experiences, we'll end up still having highly correlated samples. Instead, this is where Mnih, et al. introduced *Replay Memory*. When sampling from this buffer, we sample randomly rather than take the $n$ most recent samples. This solves our correlation issue, and keeps the buffer quite simple. [^1]
 
 
 ```python
@@ -615,7 +615,7 @@ plt.savefig('out\\simple_learning_curve.png')
     
 
 
-{% bibliography --cited %}
+[^1]: Mnih, V., Kavukcuoglu, K., Silver, D., Graves, A., Antonoglou, I., Wierstra, D., & Riedmiller, M. (2013). Playing atari with deep reinforcement learning. *arXiv preprint arXiv:1312.5602*.
 
 ```python
 plt.figure(figsize=(10, 6))
