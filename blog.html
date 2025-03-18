@@ -405,15 +405,15 @@
                 
                 postListElement.innerHTML = filteredPosts.map(post => `
                     <li class="post-item">
-                        <h3 class="post-title"><a href="/templates/post.html?post=${post.filename}">${post.title}</a></h3>
+                        <h3 class="post-title"><a href="templates/post.html?post=${post.filename}">${post.title}</a></h3>
                         <div class="post-date">${post.date}</div>
                         ${post.tags.length > 0 ? `
                             <div class="post-tags">
-                                ${post.tags.map(tag => `<a href="/blog.html?tag=${encodeURIComponent(tag)}" class="post-tag">${tag}</a>`).join('')}
+                                ${post.tags.map(tag => `<a href="blog.html?tag=${encodeURIComponent(tag)}" class="post-tag">${tag}</a>`).join('')}
                             </div>
                         ` : ''}
                         <p class="post-excerpt">${post.excerpt}</p>
-                        <a href="/templates/post.html?post=${post.filename}">Read more →</a>
+                        <a href="templates/post.html?post=${post.filename}">Read more →</a>
                     </li>
                 `).join('');
                 
