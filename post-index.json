@@ -1,0 +1,14 @@
+[
+  {
+    "filename": "2021-12-29-lunar-lander-with-deep-q-network.md",
+    "title": "Lunar Lander with Deep Q-Network",
+    "date": "December 29, 2021",
+    "categories": [
+      "dqn",
+      "rl"
+    ],
+    "tags": [],
+    "image": "images/lunar_lander.png",
+    "excerpt": ""
+  }
+]
