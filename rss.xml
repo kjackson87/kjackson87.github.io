@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+    <channel>
+        <title>Kyle Jackson | AI &amp; ML Specialist</title>
+        <link>https://kjackson87.github.io</link>
+        <description>Updates on AI research, publications, and work in Responsible AI and LLM evaluation systems</description>
+        <language>en-us</language>
+        <lastBuildDate>Wed, 15 May 2024 12:00:00 GMT</lastBuildDate>
+        
+        <item>
+            <title>Jailbreak Distillation: Renewable Safety Benchmarking</title>
+            <link>https://arxiv.org/abs/2505.22037</link>
+            <description>Research on language model safety benchmarking by Zhang, J., Elgohary, A., et al.</description>
+            <pubDate>Wed, 15 May 2024 12:00:00 GMT</pubDate>
+            <guid>https://arxiv.org/abs/2505.22037</guid>
+        </item>
+        
+        <item>
+            <title>Defense against Prompt Injection Attacks via Mixture of Encodings</title>
+            <link>https://arxiv.org/abs/2504.07467</link>
+            <description>Research on prompt injection mitigations led by my team at Microsoft (NAACL 2025)</description>
+            <pubDate>Wed, 10 Apr 2024 12:00:00 GMT</pubDate>
+            <guid>https://arxiv.org/abs/2504.07467</guid>
+        </item>
+        
+        <item>
+            <title>Controllable Safety Alignment: Inference-Time Adaptation to Diverse Safety Requirements</title>
+            <link>https://arxiv.org/abs/2410.08968</link>
+            <description>Research on adapting language models to different safety requirements at inference time</description>
+            <pubDate>Fri, 13 Oct 2023 12:00:00 GMT</pubDate>
+            <guid>https://arxiv.org/abs/2410.08968</guid>
+        </item>
+        
+        <item>
+            <title>A Framework for Automated Measurement of Responsible AI Harms in Generative AI Applications</title>
+            <link>https://arxiv.org/abs/2310.17750</link>
+            <description>Research on LLM-Judges for automatically evaluating potentially harmful content across Microsoft's AI products</description>
+            <pubDate>Thu, 26 Oct 2023 12:00:00 GMT</pubDate>
+            <guid>https://arxiv.org/abs/2310.17750</guid>
+        </item>
+    </channel>
+</rss> 
